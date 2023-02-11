@@ -1,0 +1,38 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "$lib/*": [
+                "src/lib/*"
+            ],
+            "$svg/*": [
+                "src/svg/*"
+            ],
+            "$types": [
+                "src/types.ts"
+            ],
+        },
+        "strict": true,
+        "sourceMap": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "isolatedModules": true,
+        "resolveJsonModule": true,
+        "preserveValueImports": true,
+        "moduleResolution": "Node",
+        "importsNotUsedAsValues": "error",
+        "lib": [
+            "DOM",
+            "ESNext",
+            "DOM.Iterable"
+        ],
+        "module": "ESNext",
+        "target": "ESNext",
+        "types": [
+            "svelte"
+        ]
+    },
+    "include": [
+        "src/**/*"
+    ],
+}

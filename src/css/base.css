@@ -1,0 +1,55 @@
+body,
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr;
+    font-family: system-ui;
+    text-align: center;
+    background-color: var(--light);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+header>* {
+    margin: 0;
+}
+
+button {
+    text-align: inherit;
+    color: inherit;
+    background-color: var(--back);
+    padding: 0.45rem 1rem;
+    margin: 0;
+    border: 0;
+    border-radius: 0.25rem;
+    font-size: inherit;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--hover);
+}
+
+button:hover:active {
+    background-color: var(--active);
+}
+
+a {
+    color: inherit;
+}
+
+* {
+    box-sizing: border-box;
+}
