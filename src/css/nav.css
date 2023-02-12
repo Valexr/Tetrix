@@ -1,0 +1,73 @@
+nav {
+    color-scheme: dark;
+    position: absolute;
+    left: calc(50% - 150px);
+    top: calc(50% - 25px);
+    display: flex;
+    flex-flow: column nowrap;
+    width: 300px;
+}
+
+nav.playing {
+    top: auto;
+    left: auto;
+    position: relative;
+    flex-flow: row nowrap;
+    justify-content: center;
+    gap: 1rem;
+    bottom: 0.5rem;
+    width: 100%;
+}
+
+fieldset {
+    display: flex;
+    justify-content: space-between;
+    border: 0;
+    margin: 0;
+    padding: 1rem 0;
+}
+
+label {
+    flex: 0 1 min-content;
+}
+
+input,
+select {
+    border: 0;
+    border-radius: 0;
+    padding: 0.25rem;
+    color: var(--dark);
+    background-color: var(--light);
+    font-size: inherit;
+}
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%204%205'%3E%3Cpath%20fill='currentColor'%20d='M2%200L0%202h4zm0%205L0%203h4z'/%3E%3C/svg%3E");
+    background-position: right 0.5em center;
+    background-repeat: no-repeat;
+    background-size: .5em .75em;
+    padding-right: 2em;
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+    position: relative;
+    vertical-align: middle;
+    box-shadow: var(--shadow);
+    background-color: var(--back);
+    color: var(--dark);
+    font-family: inherit;
+}
+
+button.lg {
+    font-size: 2rem;
+    box-shadow: var(--shadow-lg);
+}
+
+button:active {
+    top: 2px;
+    left: 2px;
+    box-shadow: none;
+}

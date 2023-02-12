@@ -10,17 +10,23 @@ body {
     grid-template-columns: 1fr;
     font-family: system-ui;
     text-align: center;
+    color: var(--dark);
     background-color: var(--light);
 }
 
-header {
+* {
+    box-sizing: border-box;
+}
+
+header,
+footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
 }
 
-header>* {
+:is(header, footer)>* {
     margin: 0;
 }
 
@@ -48,8 +54,4 @@ button:hover:active {
 
 a {
     color: inherit;
-}
-
-* {
-    box-sizing: border-box;
 }
