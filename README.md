@@ -1,1 +1,1 @@
-# esbuild-svelte-ts
+# Tetrix
