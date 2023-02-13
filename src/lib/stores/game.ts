@@ -4,9 +4,11 @@ import { heap } from "./heap";
 import { clamp } from "$lib/utils";
 import type { Game } from "$types";
 
-export const board = readable({
+export const board = writable({
     width: 10,
-    height: 20
+    height: 20,
+    cell: 16,
+    gap: 2
 });
 
 function createGame() {

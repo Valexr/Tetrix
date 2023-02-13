@@ -15,7 +15,6 @@ nav.playing {
     flex-flow: row nowrap;
     justify-content: center;
     gap: 1rem;
-    bottom: 0.5rem;
     width: 100%;
 }
 

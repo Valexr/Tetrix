@@ -7,22 +7,17 @@ type ClickEvent = MouseEvent & {
     target: EventTarget & { dataset: DOMStringMap };
 };
 
-export function controls(board: HTMLElement) {
-    // const RO = new ResizeObserver(([{ contentRect }]) => {
-    //     const { width, height } = contentRect;
-    //     const cell = $field.cell + $field.gap;
-    //     field.set({
-    //         width: Math.round(width / cell),
-    //         height: Math.round(height / cell),
-    //         cell: $field.cell,
-    //         gap: $field.gap,
-    //     });
-    // });
+export function controls(field: HTMLElement) {
+    const RO = new ResizeObserver(([{ contentRect }]) => {
+        const { width, height } = contentRect;
+        const cell = Math.round(height / 20)
+        board.update(board => Object.assign(board, { cell }))
+    });
 
-    // RO.observe(area);
+    // RO.observe(field);
 
     window.onkeydown = (e) => keyboardHandler(e);
-    // board.onclick = (e) => clickHandler(e as ClickEvent);
+    // field.onclick = (e) => clickHandler(e as ClickEvent);
 
     function keyboardHandler(e: KeyboardEvent) {
         if (get(game).state !== "play") return;
