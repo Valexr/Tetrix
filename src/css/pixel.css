@@ -1,4 +1,5 @@
 .pixel {
+    aspect-ratio: 1;
     background-color: var(--back);
 }
 
