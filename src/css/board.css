@@ -1,10 +1,15 @@
+main {
+    position: relative;
+    padding: 0 1rem;
+}
+
 #board {
     display: grid;
     grid-template-columns: repeat(var(--cols), auto);
-    max-inline-size: 19rem;
-    max-block-size: 38rem;
+    max-inline-size: 18rem;
+    max-block-size: 36rem;
     position: absolute;
-    inset: 4rem 0;
+    inset: 0;
     margin: auto;
     gap: 2px;
     user-select: none;
