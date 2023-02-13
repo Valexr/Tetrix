@@ -1,6 +1,6 @@
 import { get, writable } from "svelte/store";
 import { heap } from "./heap";
-import { random } from "$lib/utils";
+import { equal, random } from "$lib/utils";
 import type { Cell } from "$types";
 
 export const figures = {
@@ -39,11 +39,11 @@ function createFigure() {
         get(figure: keyof typeof figures) {
             set(figures[figure])
         },
-        move(direction: keyof typeof directions) {
+        move(direction: string) {
             let outboard = false
             let inheap = false
             update(figure => {
-                const dir = directions[direction]
+                const dir = directions[direction as keyof typeof directions]
                 const next = figure.map(({ x, y }) => ({ x: x + dir.x, y: y + dir.y }))
                 outboard = next.some(({ x, y }) => (x < 0 || x >= 10 || y >= 20))
                 inheap = heap.include(next) || next.some(({ x, y }) => (y >= 20))
@@ -62,6 +62,9 @@ function createFigure() {
                     const inheap = heap.include(rotated)
                     return outboard || inheap ? figure : rotated
                 })
+        },
+        include(cell: Cell) {
+            return get(this).some((pixel) => equal(cell, pixel));
         },
     }
 }

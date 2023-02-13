@@ -17,7 +17,10 @@ export function controls(field: HTMLElement) {
     // RO.observe(field);
 
     window.onkeydown = (e) => keyboardHandler(e);
-    // field.onclick = (e) => clickHandler(e as ClickEvent);
+    field.onclick = (e) => clickHandler(e as ClickEvent);
+    // field.onpointerdown = (e) => pointerDown(e);
+    // field.onpointermove = (e) => pointerMove(e);
+    // field.onpointerup = (e) => pointerUp(e);
 
     function keyboardHandler(e: KeyboardEvent) {
         if (get(game).state !== "play") return;
@@ -30,19 +33,36 @@ export function controls(field: HTMLElement) {
             game.pause();
         }
     }
-    // function clickHandler(e: ClickEvent) {
-    //     // if ($game.state !== "play") return;
-    //     const { dataset } = e.target;
-    //     if (Object.keys(dataset).length) {
-    //         const axis = !snake.direction.x ? "x" : "y";
-    //         const back = Number(dataset[axis]) < snake.head[axis];
-    //         const vert = back ? "Up" : "Down";
-    //         const horz = back ? "Left" : "Right";
-    //         const side = axis === "x" ? horz : vert;
+    function clickHandler(e: ClickEvent) {
+        if (get(game).state !== "play") return;
+        const { dataset: { x, y } } = e.target;
+        if (x && y) {
+            const pixel = { x: Number(x), y: Number(y) }
+            if (figure.include(pixel)) figure.rotate()
+            else {
+                let side
+                const fig = get(figure)
+                side = fig.every(({ x, y }) => x < pixel.x) ? 'Right' : fig.every(({ x, y }) => y < pixel.y) ? 'Down' : 'Left'
+                figure.move(side);
+            }
+        }
+    }
 
-    //         figure.move(side);
-    //     }
-    // }
+    let dx = 0, dy = 0, pressed = false
+    function pointerDown(e: PointerEvent) {
+        const { dataset: { x, y } } = e.target as HTMLElement;
+        const pixel = { x: Number(x), y: Number(y) }
+        dx = e.clientX
+        dy = e.clientY
+        pressed = figure.include(pixel)
+    }
+    function pointerMove(e: PointerEvent) {
+        const side = dy < e.clientY ? 'Down' : dx < e.clientX ? 'Right' : 'Left'
+        pressed && setTimeout(() => figure.move(side), 500);
+    }
+    function pointerUp(e: PointerEvent) {
+        pressed = false
+    }
 
     // return {
     //     destroy() {
