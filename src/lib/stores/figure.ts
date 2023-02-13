@@ -52,16 +52,12 @@ function createFigure() {
             return inheap
         },
         rotate() {
-            const pivot = get(this)[1]
-            function xPivot(cell: Cell) {
-                return pivot.y - cell.y + pivot.x
-            }
-            function yPivot(cell: Cell) {
-                return pivot.y - pivot.x + cell.x
-            }
+            const point = get(this)[1]
+            const xR = (cell: Cell) => point.y - cell.y + point.x
+            const yR = (cell: Cell) => point.y - point.x + cell.x
             if (this.name !== 'B')
                 update(figure => {
-                    const rotated = figure.map(cell => ({ x: xPivot(cell), y: yPivot(cell) }))
+                    const rotated = figure.map(cell => ({ x: xR(cell), y: yR(cell) }))
                     const outboard = rotated.some(({ x, y }) => (x < 0 || x >= 10 || y >= 20))
                     const inheap = heap.include(rotated)
                     return outboard || inheap ? figure : rotated
