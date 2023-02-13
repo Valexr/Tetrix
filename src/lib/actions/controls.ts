@@ -8,14 +8,6 @@ type ClickEvent = MouseEvent & {
 };
 
 export function controls(field: HTMLElement) {
-    // const RO = new ResizeObserver(([{ contentRect }]) => {
-    //     const { width, height } = contentRect;
-    //     const cell = Math.round(height / 20)
-    //     board.update(board => Object.assign(board, { cell }))
-    // });
-
-    // RO.observe(field);
-
     window.onkeydown = (e) => keyboardHandler(e);
     field.onclick = (e) => clickHandler(e as ClickEvent);
     // field.onpointerdown = (e) => pointerDown(e);
