@@ -1,10 +1,10 @@
-import { get, writable } from "svelte/store";
+import { get, readable, writable } from "svelte/store";
 import { figure } from "./figure";
 import { heap } from "./heap";
-import type { Game } from "$types";
 import { clamp } from "$lib/utils";
+import type { Game } from "$types";
 
-export const field = writable({
+export const board = readable({
     width: 10,
     height: 20
 });
@@ -28,7 +28,7 @@ function createGame() {
             score(0)
             state('play');
             heap.clear()
-            // figure.random();
+            figure.random();
             tick();
         },
         pause() {
@@ -40,10 +40,9 @@ function createGame() {
         },
         stop() {
             state('stop');
-            // snake.set([{ x: 0, y: 0 }])
         },
         scoreup() {
-            update(game => Object.assign(game, { score: game.score + 10 * game.speed }))
+            update(game => Object.assign(game, { score: game.score + completed * game.speed }))
         },
         speedup() {
             update(game => Object.assign(game, { speed: clamp(1, game.speed + 1, 10) }))
@@ -53,19 +52,26 @@ function createGame() {
 
 export const game = createGame()
 
-let stop = false
+let inheap = false, completed = 0
+
 function tick() {
     setTimeout(() => {
         if (get(game).state === 'play') {
-            if (heap.full()) game.stop()
-            stop = figure.move('Down');
-            if (stop) {
-                heap.add(get(figure))
-                figure.random()
-                // game.stop()
-            }
-            console.log(stop)
+            move()
             tick();
         }
     }, 900 - (80 * get(game).speed));
+}
+
+function move() {
+    if (heap.full()) game.stop()
+    inheap = figure.move('Down');
+    if (inheap) {
+        heap.add(get(figure))
+        completed = heap.check()
+        game.scoreup()
+        completed && !(get(game).score % 100) && game.speedup()
+        completed = 0
+        figure.random()
+    }
 }

@@ -1,5 +1,5 @@
 import { get } from 'svelte/store'
-import { field, game } from '$lib/stores/game'
+import { board, game } from '$lib/stores/game'
 import { figure } from '$lib/stores/figure'
 import type { Directions } from '$types';
 
@@ -27,12 +27,9 @@ export function controls(board: HTMLElement) {
     function keyboardHandler(e: KeyboardEvent) {
         if (get(game).state !== "play") return;
         if (e.key.includes("Arrow")) {
-            const side = e.key.replace("Arrow", "") as Directions;
-            figure.move(side);
-        } else if (e.key.includes(" ")) {
-            e.preventDefault();
-            figure.rotate()
-
+            const side = e.key.replace("Arrow", "");
+            if (side === 'Up') figure.rotate()
+            else figure.move(side as Directions);
         } else if (e.key.includes("Escape")) {
             e.preventDefault();
             game.pause();

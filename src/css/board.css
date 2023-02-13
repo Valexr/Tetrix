@@ -1,0 +1,12 @@
+#board {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), auto);
+    max-inline-size: 19rem;
+    max-block-size: 38rem;
+    position: absolute;
+    inset: 4rem 0;
+    margin: auto;
+    gap: 2px;
+    user-select: none;
+    -webkit-user-select: none;
+}

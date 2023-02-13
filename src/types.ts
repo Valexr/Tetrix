@@ -11,12 +11,9 @@ export type Game = {
     speed: number
 }
 
-export type Field = {
+export type Board = {
     width: number,
-    height: number,
-    cell: number
-    gap: number,
-    part: number,
+    height: number
 }
 
 export type Cell = {

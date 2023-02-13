@@ -8,8 +8,8 @@ function random(max: number): number {
     return Math.floor(Math.random() * max)
 }
 
-function equal(field: Cell, pixel: Cell) {
-    return field.x === pixel.x && field.y === pixel.y
+function equal(cell: Cell, pixel: Cell) {
+    return cell.x === pixel.x && cell.y === pixel.y
 }
 
 export { clamp, random, equal }

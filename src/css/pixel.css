@@ -1,0 +1,9 @@
+.pixel {
+    aspect-ratio: 1;
+    background-color: var(--back);
+}
+
+.pixel.fill {
+    position: relative;
+    background-color: var(--active);
+}

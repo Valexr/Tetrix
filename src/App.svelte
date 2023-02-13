@@ -1,5 +1,4 @@
 <script lang="ts" context="module">
-    import gh from "$svg/gh.svg";
     import Score from "$lib/components/Score.svelte";
     import Board from "$lib/components/Board.svelte";
     import Nav from "$lib/components/Nav.svelte";
@@ -20,13 +19,7 @@
 
 <Score {name} {repository} />
 <Board />
-
-<footer>
-    <Nav />
-    <!-- <button>Stop</button>
-    <p>Footer</p>
-    <button>Start</button> -->
-</footer>
+<Nav />
 
 <style>
     @import "app.css";

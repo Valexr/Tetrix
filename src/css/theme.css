@@ -4,8 +4,9 @@
     --back: #e9e9ed;
     --hover: #d0d0d7;
     --active: #b1b1b9;
-    --shadow: 2px 2px 1px 0px hwb(240 69% 27% / 0.5);
-    --shadow-lg: 4px 4px 1px 0px hwb(240 69% 27% / 0.5);
+    --shadow-color: #b1b1b969;
+    --shadow: 2px 2px 1px 0px var(--shadow-color);
+    --shadow-lg: 4px 4px 1px 0px var(--shadow-color);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,7 +17,6 @@
         --back: #2b2a33;
         --hover: #52525e;
         --active: #5b5b66;
-        --shadow: 2px 2px 1px 0px hwb(240 36% 60% / 0.5);
-        --shadow-lg: 4px 4px 1px 0px hwb(240 36% 60% / 0.5);
+        --shadow-color: #5b5b6669;
     }
 }
