@@ -2,13 +2,11 @@ import { get, readable, writable } from "svelte/store";
 import { figure } from "./figure";
 import { heap } from "./heap";
 import { clamp } from "$lib/utils";
-import type { Game } from "$types";
+import type { Board, Game } from "$types";
 
-export const board = writable({
+export const board = readable<Board>({
     width: 10,
-    height: 20,
-    cell: 16,
-    gap: 2
+    height: 20
 });
 
 function createGame() {
@@ -73,7 +71,6 @@ function move() {
         completed = heap.check()
         game.scoreup()
         completed && !(get(game).score % 100) && game.speedup()
-        completed = 0
         figure.random()
     }
 }

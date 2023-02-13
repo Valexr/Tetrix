@@ -8,7 +8,7 @@ function createHeap() {
     // const initial = Array.from({ length: 5 }, (_, i) => ({ x: i, y: 19 }))
     // console.log(initial)
     // set(initial)
-    let completed: number = 0
+
 
     function reducer(acc: { [key: string]: number }, { y }: Cell) {
         acc[y] = acc[y] || 0
@@ -29,6 +29,7 @@ function createHeap() {
             return get(this).some((cell) => figure.some(pixel => equal(cell, pixel)));
         },
         check() {
+            let completed: number = 0
             update(heap => {
                 const filled = heap.reduce(reducer, {})
                 const filtered = heap.filter(({ x, y }) => filled[y] !== 10)
@@ -39,17 +40,6 @@ function createHeap() {
                 return moved
             })
             return completed
-        },
-        // complete() {
-        //     update(heap => {
-        //         const filled = heap.reduce(reducer, {})
-        //         completed = heap.filter(({ x, y }) => filled[y] === 10).length
-        //         return heap
-        //     })
-        //     return completed
-        // },
-        move() {
-            update(heap => heap.map(({ x, y }) => ({ x: x + 1, y: y + 1 })))
         },
         full() {
             return get(this).some(({ x, y }) => !y)
