@@ -20,7 +20,7 @@ nav.playing {
 
 fieldset {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     border: 0;
     margin: 0;
     padding: 1rem 0;
