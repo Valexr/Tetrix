@@ -31,14 +31,14 @@
                             size="3"
                         />
                     </label>
-                    <label>
+                    <!-- <label>
                         Fugure
                         <select bind:value={$figure}>
                             {#each Object.entries(figures) as [name, value]}
                                 <option {value}>{name}</option>
                             {/each}
                         </select>
-                    </label>
+                    </label> -->
                     <label>
                         Heap
                         <input

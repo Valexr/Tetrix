@@ -23,9 +23,7 @@ function createFigure() {
         Right: { x: 1, y: 0 },
     };
 
-    let name: string = 'S'
-
-    set(figures[name as keyof typeof figures])
+    let name: string = ''
 
     return {
         subscribe,
@@ -39,11 +37,12 @@ function createFigure() {
         get(figure: keyof typeof figures) {
             set(figures[figure])
         },
-        move(direction: string) {
+        move(direction: string | Cell) {
             let outboard = false
             let inheap = false
             update(figure => {
-                const dir = directions[direction as keyof typeof directions]
+                const coord = typeof direction === 'object'
+                const dir = coord ? direction : directions[direction as keyof typeof directions]
                 const next = figure.map(({ x, y }) => ({ x: x + dir.x, y: y + dir.y }))
                 outboard = next.some(({ x, y }) => (x < 0 || x >= 10 || y >= 20))
                 inheap = heap.include(next) || next.some(({ x, y }) => (y >= 20))
@@ -55,7 +54,7 @@ function createFigure() {
             const point = get(this)[1]
             const xR = (cell: Cell) => point.y - cell.y + point.x
             const yR = (cell: Cell) => point.y - point.x + cell.x
-            if (this.name !== 'B')
+            if (name !== 'B')
                 update(figure => {
                     const rotated = figure.map(cell => ({ x: xR(cell), y: yR(cell) }))
                     const outboard = rotated.some(({ x, y }) => (x < 0 || x >= 10 || y >= 20))

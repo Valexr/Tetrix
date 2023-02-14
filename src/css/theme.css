@@ -1,7 +1,7 @@
 :root {
-    --light: #fff;
-    --dark: #1c1b22;
-    --back: #e9e9ed;
+    --back: #f2f2f2;
+    --front: #1c1b22;
+    --surface: #e9e9ed;
     --hover: #d0d0d7;
     --active: #b1b1b9;
     --shadow-color: #b1b1b969;
@@ -12,9 +12,9 @@
 @media (prefers-color-scheme: dark) {
     :root {
         color-scheme: dark;
-        --light: #1c1b22;
-        --dark: #fff;
-        --back: #2b2a33;
+        --back: #1c1b22;
+        --front: #f2f2f2;
+        --surface: #2b2a33;
         --hover: #52525e;
         --active: #5b5b66;
         --shadow-color: #5b5b6669;

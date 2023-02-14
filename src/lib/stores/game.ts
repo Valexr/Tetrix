@@ -27,7 +27,7 @@ function createGame() {
         start() {
             score(0)
             state('play');
-            heap.clear()
+            heap.clear();
             figure.random();
             tick();
         },

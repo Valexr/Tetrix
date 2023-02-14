@@ -10,8 +10,8 @@ body {
     grid-template-columns: 1fr;
     font-family: system-ui;
     text-align: center;
-    color: var(--dark);
-    background-color: var(--light);
+    color: var(--front);
+    background-color: var(--back);
 }
 
 * {
@@ -37,7 +37,7 @@ button {
     color: inherit;
     cursor: pointer;
     font-size: inherit;
-    background-color: var(--back);
+    background-color: var(--surface);
     padding: 0.45rem 1rem;
     border-radius: 0.25rem;
     user-select: none;

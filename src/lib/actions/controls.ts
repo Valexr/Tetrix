@@ -2,6 +2,7 @@ import { get } from 'svelte/store'
 import { board, game } from '$lib/stores/game'
 import { figure } from '$lib/stores/figure'
 import type { Directions } from '$types';
+import { clamp, throttle } from '$lib/utils';
 
 type ClickEvent = MouseEvent & {
     target: EventTarget & { dataset: DOMStringMap };
@@ -11,7 +12,7 @@ export function controls(field: HTMLElement) {
     window.onkeydown = (e) => keyboardHandler(e);
     field.onclick = (e) => clickHandler(e as ClickEvent);
     // field.onpointerdown = (e) => pointerDown(e);
-    // field.onpointermove = (e) => pointerMove(e);
+    // field.onpointermove = (e) => throttle(pointerMove, 500, true);
     // field.onpointerup = (e) => pointerUp(e);
 
     function keyboardHandler(e: KeyboardEvent) {
@@ -32,9 +33,10 @@ export function controls(field: HTMLElement) {
             const pixel = { x: Number(x), y: Number(y) }
             if (figure.include(pixel)) figure.rotate()
             else {
-                let side
                 const fig = get(figure)
-                side = fig.every(({ x, y }) => x < pixel.x) ? 'Right' : fig.every(({ x, y }) => y < pixel.y) ? 'Down' : 'Left'
+                const side = fig.every(({ x, y }) => x < pixel.x)
+                    ? 'Right' : fig.every(({ x, y }) => y < pixel.y)
+                        ? 'Down' : 'Left'
                 figure.move(side);
             }
         }
@@ -49,8 +51,14 @@ export function controls(field: HTMLElement) {
         pressed = figure.include(pixel)
     }
     function pointerMove(e: PointerEvent) {
-        const side = dy < e.clientY ? 'Down' : dx < e.clientX ? 'Right' : 'Left'
-        pressed && setTimeout(() => figure.move(side), 500);
+        if (pressed) {
+            const { clientX, clientY } = e
+            const x = (clientX - dx) % 50
+            const y = (clientY - dy)
+            console.log(x, y)
+            const coords = { x, y }
+            figure.move({ x, y: 0 })
+        }
     }
     function pointerUp(e: PointerEvent) {
         pressed = false

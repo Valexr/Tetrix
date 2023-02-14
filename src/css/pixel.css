@@ -1,6 +1,6 @@
 .pixel {
     aspect-ratio: 1;
-    background-color: var(--back);
+    background-color: var(--surface);
 }
 
 .pixel.fill {

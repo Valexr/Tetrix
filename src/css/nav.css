@@ -35,8 +35,8 @@ select {
     border: 0;
     border-radius: 0;
     padding: 0.25rem;
-    color: var(--dark);
-    background-color: var(--light);
+    color: var(--front);
+    background-color: var(--back);
     font-size: inherit;
     border-radius: 0.15rem;
 }

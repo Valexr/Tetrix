@@ -1,6 +1,7 @@
 import { get, writable } from "svelte/store";
 import { equal } from "$lib/utils";
 import type { Cell } from "$types";
+import { board } from "./game";
 
 function createHeap() {
     const { subscribe, set, update } = writable<Cell[]>([])
@@ -10,7 +11,7 @@ function createHeap() {
     // set(initial)
 
 
-    function reducer(acc: { [key: string]: number }, { y }: Cell) {
+    function counter(acc: { [key: string]: number }, { y }: Cell) {
         acc[y] = acc[y] || 0
         acc[y] += 1
         return acc
@@ -29,17 +30,20 @@ function createHeap() {
             return get(this).some((cell) => figure.some(pixel => equal(cell, pixel)));
         },
         check() {
-            let completed: number = 0
+            let completed: Cell[] = []
             update(heap => {
-                const filled = heap.reduce(reducer, {})
+                const filled = heap.reduce(counter, {})
                 const filtered = heap.filter(({ x, y }) => filled[y] !== 10)
-                completed = heap.filter(({ x, y }) => filled[y] === 10).length
-                const move = (heap.length - filtered.length) / 10
-                const moved = filtered.map(({ x, y }) => ({ x, y: y + move }))
-                console.log(heap.length, filtered.length)
+                completed = heap.filter(({ x, y }) => filled[y] === 10)
+                const moved = filtered.map(({ x, y }) => {
+                    const before = completed.some(cell => cell.y > y)
+                    const Y = before ? y + completed.length / 10 : y
+                    const pixel = { x, y: Y }
+                    return pixel
+                })
                 return moved
             })
-            return completed
+            return completed.length
         },
         full() {
             return get(this).some(({ x, y }) => !y)
