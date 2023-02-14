@@ -31,8 +31,8 @@ function createHeap() {
             let completed: Cell[] = []
             update(heap => {
                 const filled = heap.reduce(counter, {})
-                const filtered = heap.filter(({ x, y }) => filled[y] !== 10)
-                completed = heap.filter(({ x, y }) => filled[y] === 10)
+                const filtered = heap.filter(({ y }) => filled[y] !== 10)
+                completed = heap.filter(({ y }) => filled[y] === 10)
                 const moved = filtered.map(({ x, y }) => {
                     const before = completed.some(cell => cell.y > y)
                     const Y = before ? y + completed.length / 10 : y
@@ -42,11 +42,8 @@ function createHeap() {
             })
             return completed.length
         },
-        reduce() {
-
-        },
         full() {
-            return get(this).some(({ x, y }) => !y)
+            return get(this).some(({ y }) => !y)
         }
     }
 }
