@@ -9,12 +9,6 @@ function createHeap() {
     // console.log(initial)
     // set(initial)
 
-    function counter(acc: { [key: string]: number }, { y }: Cell) {
-        acc[y] = acc[y] || 0
-        acc[y] += 1
-        return acc
-    }
-
     return {
         subscribe,
         set,
@@ -28,17 +22,27 @@ function createHeap() {
             return get(this).some((cell) => figure.some(pixel => equal(cell, pixel)));
         },
         check() {
-            let completed: Cell[] = []
+            let completed: number[] = []
+            function counter(acc: { [key: string]: number }, { y }: Cell) {
+                acc[y] = acc[y] || 0
+                acc[y] += 1
+                return acc
+            }
             update(heap => {
-                const filled = heap.reduce(counter, {})
-                const filtered = heap.filter(({ y }) => filled[y] !== 10)
-                completed = heap.filter(({ y }) => filled[y] === 10)
-                const moved = filtered.map(({ x, y }) => {
-                    const before = completed.some(cell => cell.y > y)
-                    const Y = before ? y + completed.length / 10 : y
-                    return { x, y: Y }
-                })
-                return moved
+                const rows = heap.reduce(counter, {})
+                completed = Object.keys(rows).filter(y => rows[y] === 10).map(Number)
+                if (completed.length) {
+                    let moved = heap.filter(({ y }) => !completed.includes(y))
+                    for (const row of completed) {
+                        moved = moved.map(({ x, y }) => {
+                            const before = row > y
+                            y = before ? y + 1 : y
+                            return { x, y }
+                        })
+                    }
+                    return moved
+                }
+                return heap
             })
             return completed.length
         },

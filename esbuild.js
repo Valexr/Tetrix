@@ -7,7 +7,16 @@ import log from './env/log.js';
 const DEV = process.argv.includes('--dev');
 
 const serveOptions = {
-    servedir: 'public'
+    servedir: 'public',
+    onRequest(args) {
+        console.log(
+            // `%d %s %dms %s`,
+            args.status,
+            args.method,
+            args.timeInMS,
+            args.remoteAddress + args.path,
+        );
+    },
 };
 
 const svelteOptions = {
@@ -35,6 +44,7 @@ const buildOptions = {
     plugins: [svelte(svelteOptions), log],
     inject: DEV ? ['./env/lr.js'] : [],
     legalComments: "none",
+    logLevel: 'info'
 };
 
 await rm('public/build');
@@ -45,11 +55,15 @@ if (DEV) {
     await ctx.watch();
     const { host, port } = await ctx.serve(serveOptions);
 
+    // const proxy = http();
+    // proxy.listen(port);
+    // console.log(`Serve on http://${host}:${port}`);
+
     process.on('SIGTERM', ctx.dispose);
     process.on("exit", ctx.dispose);
 
-    const time = new Date().toLocaleTimeString();
-    console.dir(`${time} ${process.env.npm_package_name} started on http://${host}:${port}`);
+    // const time = new Date().toLocaleTimeString();
+    // console.dir(`${time} ${process.env.npm_package_name} started on http://${host}:${port}`);
 } else {
     await build(buildOptions);
-}
+};

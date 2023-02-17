@@ -32,10 +32,7 @@ function createFigure() {
         random() {
             const keys = Object.keys(figures)
             name = keys[random(keys.length)]
-            this.get(name as keyof typeof figures)
-        },
-        get(figure: keyof typeof figures) {
-            set(figures[figure])
+            set(figures[name as keyof typeof figures])
         },
         move(direction: string | Cell) {
             let outboard = false

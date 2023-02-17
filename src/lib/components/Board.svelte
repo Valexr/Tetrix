@@ -7,7 +7,11 @@
 </script>
 
 <main>
-    <section id="board" use:controls style="--cols: {$board.width};">
+    <section
+        id="board"
+        use:controls
+        style="--cols: {$board.width}; --rows: {$board.height}"
+    >
         {#each { length: $board.height } as _, y}
             {#each { length: $board.width } as _, x}
                 <Pixel pixel={{ x, y }} filled={[...$figure, ...$heap]} />

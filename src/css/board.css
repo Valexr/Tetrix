@@ -6,11 +6,11 @@ main {
 #board {
     display: grid;
     grid-template-columns: repeat(var(--cols), auto);
+    aspect-ratio: var(--cols) / var(--rows);
     max-block-size: 100%;
-    aspect-ratio: 1/2;
     position: absolute;
-    inset: 0;
     margin: auto;
+    inset: 0;
     gap: 2px;
     user-select: none;
     -webkit-user-select: none;
