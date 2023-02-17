@@ -1,5 +1,6 @@
 import { get, writable } from "svelte/store";
 import { equal } from "$lib/utils";
+import { board } from "./game";
 import type { Cell } from "$types";
 
 function createHeap() {
@@ -30,7 +31,7 @@ function createHeap() {
             }
             update(heap => {
                 const rows = heap.reduce(counter, {})
-                completed = Object.keys(rows).filter(y => rows[y] === 10).map(Number)
+                completed = Object.keys(rows).filter(y => rows[y] === get(board).width).map(Number)
                 if (completed.length) {
                     let moved = heap.filter(({ y }) => !completed.includes(y))
                     for (const row of completed) {

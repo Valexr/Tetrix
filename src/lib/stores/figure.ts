@@ -1,6 +1,7 @@
 import { get, writable } from "svelte/store";
-import { heap } from "./heap";
 import { equal, random } from "$lib/utils";
+import { heap } from "./heap";
+import { board } from "./game";
 import type { Cell } from "$types";
 
 export const figures = {
@@ -41,8 +42,9 @@ function createFigure() {
                 const coord = typeof direction === 'object'
                 const dir = coord ? direction : directions[direction as keyof typeof directions]
                 const next = figure.map(({ x, y }) => ({ x: x + dir.x, y: y + dir.y }))
-                outboard = next.some(({ x, y }) => (x < 0 || x >= 10 || y >= 20))
-                inheap = heap.include(next) || next.some(({ x, y }) => (y >= 20))
+                const { width, height } = get(board)
+                outboard = next.some(({ x, y }) => (x < 0 || x >= width || y >= height))
+                inheap = heap.include(next) || next.some(({ x, y }) => (y >= height))
                 return inheap || outboard ? figure : next
             })
             return inheap
@@ -53,8 +55,9 @@ function createFigure() {
             const yR = (cell: Cell) => point.y - point.x + cell.x
             if (name !== 'B')
                 update(figure => {
+                    const { width, height } = get(board)
                     const rotated = figure.map(cell => ({ x: xR(cell), y: yR(cell) }))
-                    const outboard = rotated.some(({ x, y }) => (x < 0 || x >= 10 || y >= 20))
+                    const outboard = rotated.some(({ x, y }) => (x < 0 || x >= width || y >= height))
                     const inheap = heap.include(rotated)
                     return outboard || inheap ? figure : rotated
                 })

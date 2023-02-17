@@ -42,7 +42,7 @@ function createGame() {
             state('stop');
         },
         scoreup() {
-            update(game => Object.assign(game, { score: game.score + completed * 10 * game.speed }))
+            update(game => Object.assign(game, { score: game.score + completed * get(board).width * game.speed }))
         },
         speedup() {
             update(game => Object.assign(game, { speed: clamp(1, game.speed + 1, 10) }))
