@@ -12,6 +12,5 @@ main {
     margin: auto;
     inset: 0;
     gap: 2px;
-    user-select: none;
-    -webkit-user-select: none;
+    touch-action: pan-y;
 }

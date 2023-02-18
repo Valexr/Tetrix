@@ -3,19 +3,14 @@ import { figure } from '$lib/stores/figure'
 import { clamp } from '$lib/utils';
 import type { Directions } from '$types';
 
-type ClickEvent = MouseEvent & {
-    target: EventTarget & { dataset: DOMStringMap };
-};
-
-type PEvent = PointerEvent & { currentTarget: EventTarget & HTMLElement }
-
 export function controls(field: HTMLElement, state: string) {
 
     function update(state?: string) {
         if (state === 'play') {
-            window.onkeydown = (e) => keyboardHandler(e);
-            field.onclick = (e) => clickHandler(e as ClickEvent);
-            field.onpointerdown = (e) => pointerDown(e);
+            window.onkeydown = keyboardHandler
+            field.onclick = clickHandler
+            field.onpointerdown = pointerDown
+            field.onpointerup = pointerUp
         } else destroy()
     }
 
@@ -23,6 +18,7 @@ export function controls(field: HTMLElement, state: string) {
         window.onkeydown = null
         field.onclick = null
         field.onpointerdown = null
+        field.onpointerup = null
     }
 
     function keyboardHandler(e: KeyboardEvent) {
@@ -35,8 +31,8 @@ export function controls(field: HTMLElement, state: string) {
             game.pause();
         }
     }
-    function clickHandler(e: ClickEvent) {
-        const { dataset: { x, y } } = e.target;
+    function clickHandler(e: MouseEvent) {
+        const { dataset: { x, y } } = e.target as HTMLElement;
         if (x && y) {
             const pixel = { x: Number(x), y: Number(y) }
             if (figure.include(pixel)) figure.rotate()
@@ -46,19 +42,17 @@ export function controls(field: HTMLElement, state: string) {
     let dx = 0, dy = 0
 
     function pointerDown(e: PointerEvent) {
-        const { pageX, pageY } = e
+        const { pageX, pageY, pointerId } = e
 
         dx = pageX
         dy = pageY
 
-        field.onpointermove = (e) => pointerMove(e as PEvent);
-        field.onpointerup = () => pointerUp();
-        field.onpointerleave = () => pointerUp();
+        field.onpointermove = pointerMove
+        field.setPointerCapture(pointerId);
     }
-    function pointerMove(e: PEvent) {
+    function pointerMove(e: PointerEvent) {
         const { pageX, pageY } = e
         const { offsetWidth, offsetHeight } = field.firstChild as HTMLElement
-
         const x = pageX - dx
         const y = pageY - dy
 
@@ -71,8 +65,9 @@ export function controls(field: HTMLElement, state: string) {
         }
 
     }
-    function pointerUp() {
+    function pointerUp(e: PointerEvent) {
         field.onpointermove = null
+        field.releasePointerCapture(e.pointerId);
     }
 
     return {
