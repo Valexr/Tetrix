@@ -6,12 +6,15 @@ html {
 body {
     margin: 0;
     display: grid;
+    overflow: hidden;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 1fr;
     font-family: system-ui;
     text-align: center;
     color: var(--front);
     background-color: var(--back);
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 * {
@@ -40,8 +43,6 @@ button {
     background-color: var(--surface);
     padding: 0.45rem 1rem;
     border-radius: 0.25rem;
-    user-select: none;
-    -webkit-user-select: none;
 }
 
 button:hover {

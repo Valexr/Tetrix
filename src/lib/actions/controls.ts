@@ -8,12 +8,12 @@ type ClickEvent = MouseEvent & {
     target: EventTarget & { dataset: DOMStringMap };
 };
 
+type PEvent = PointerEvent & { currentTarget: EventTarget & HTMLElement }
+
 export function controls(field: HTMLElement) {
     window.onkeydown = (e) => keyboardHandler(e);
     field.onclick = (e) => clickHandler(e as ClickEvent);
-    // field.onpointerdown = (e) => pointerDown(e);
-    // field.onpointermove = (e) => throttle(pointerMove, 500, true);
-    // field.onpointerup = (e) => pointerUp(e);
+    field.onpointerdown = (e) => pointerDown(e);
 
     function keyboardHandler(e: KeyboardEvent) {
         if (get(game).state !== "play") return;
@@ -42,31 +42,29 @@ export function controls(field: HTMLElement) {
         }
     }
 
-    let dx = 0, dy = 0, pressed = false
+    let dx = 0, dy = 0
+
     function pointerDown(e: PointerEvent) {
-        const { dataset: { x, y } } = e.target as HTMLElement;
-        const pixel = { x: Number(x), y: Number(y) }
         dx = e.clientX
         dy = e.clientY
-        pressed = figure.include(pixel)
+        field.onpointermove = (e) => pointerMove(e as PEvent);
+        field.onpointerup = () => pointerUp();
+        field.onpointerleave = () => pointerUp();
     }
-    function pointerMove(e: PointerEvent) {
-        if (pressed) {
-            const { clientX, clientY } = e
-            const x = (clientX - dx) % 50
-            const y = (clientY - dy)
-            console.log(x, y)
-            const coords = { x, y }
-            figure.move({ x, y: 0 })
-        }
-    }
-    function pointerUp(e: PointerEvent) {
-        pressed = false
-    }
+    function pointerMove(e: PEvent) {
+        const { clientX, clientY, currentTarget } = e
+        const { offsetWidth } = currentTarget.querySelector('.pixel') as HTMLElement
+        const x = clientX - dx
+        const y = clientY - dy
+        dx = e.clientX
+        dy = e.clientY
 
-    // return {
-    //     destroy() {
-    //         RO.disconnect();
-    //     },
-    // };
+        figure.move({
+            x: clamp(-1, Math.round(x / offsetWidth), 1),
+            y: clamp(0, Math.round(y / offsetWidth), 1)
+        })
+    }
+    function pointerUp() {
+        field.onpointermove = null
+    }
 }
