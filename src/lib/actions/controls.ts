@@ -1,4 +1,3 @@
-import { get } from 'svelte/store'
 import { game } from '$lib/stores/game'
 import { figure } from '$lib/stores/figure'
 import { clamp } from '$lib/utils';
@@ -10,13 +9,23 @@ type ClickEvent = MouseEvent & {
 
 type PEvent = PointerEvent & { currentTarget: EventTarget & HTMLElement }
 
-export function controls(field: HTMLElement) {
-    window.onkeydown = (e) => keyboardHandler(e);
-    field.onclick = (e) => clickHandler(e as ClickEvent);
-    field.onpointerdown = (e) => pointerDown(e);
+export function controls(field: HTMLElement, state: string) {
+
+    function update(state?: string) {
+        if (state === 'play') {
+            window.onkeydown = (e) => keyboardHandler(e);
+            field.onclick = (e) => clickHandler(e as ClickEvent);
+            field.onpointerdown = (e) => pointerDown(e);
+        } else destroy()
+    }
+
+    function destroy() {
+        window.onkeydown = null
+        field.onclick = null
+        field.onpointerdown = null
+    }
 
     function keyboardHandler(e: KeyboardEvent) {
-        if (get(game).state !== "play") return;
         if (e.key.includes("Arrow")) {
             const side = e.key.replace("Arrow", "");
             if (side === 'Up') figure.rotate()
@@ -27,7 +36,6 @@ export function controls(field: HTMLElement) {
         }
     }
     function clickHandler(e: ClickEvent) {
-        if (get(game).state !== "play") return;
         const { dataset: { x, y } } = e.target;
         if (x && y) {
             const pixel = { x: Number(x), y: Number(y) }
@@ -38,10 +46,11 @@ export function controls(field: HTMLElement) {
     let dx = 0, dy = 0
 
     function pointerDown(e: PointerEvent) {
-        if (get(game).state !== "play") return;
-        const { pageX, pageY, currentTarget } = e
+        const { pageX, pageY } = e
+
         dx = pageX
         dy = pageY
+
         field.onpointermove = (e) => pointerMove(e as PEvent);
         field.onpointerup = () => pointerUp();
         field.onpointerleave = () => pointerUp();
@@ -64,5 +73,10 @@ export function controls(field: HTMLElement) {
     }
     function pointerUp() {
         field.onpointermove = null
+    }
+
+    return {
+        update,
+        destroy
     }
 }

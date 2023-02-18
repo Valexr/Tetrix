@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-    import { board } from "$lib/stores/game";
+    import { board, game } from "$lib/stores/game";
     import { heap } from "$lib/stores/heap";
     import { figure } from "$lib/stores/figure";
     import { controls } from "$lib/actions/controls";
@@ -9,7 +9,7 @@
 <main>
     <section
         id="board"
-        use:controls
+        use:controls={$game.state}
         style="--cols: {$board.width}; --rows: {$board.height}"
     >
         {#each { length: $board.height } as _, y}
