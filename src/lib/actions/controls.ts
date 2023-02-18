@@ -57,7 +57,7 @@ export function controls(field: HTMLElement) {
             figure.move({ x: clamp(-1, x, 1), y: 0 })
         } else if (Math.abs(y) > offsetHeight) {
             dy = e.clientY
-            figure.move({ x: 0, y: clamp(-1, y, 1) })
+            figure.move({ x: 0, y: clamp(0, y, 1) })
         }
 
     }
