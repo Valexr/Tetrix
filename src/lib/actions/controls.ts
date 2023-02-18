@@ -32,13 +32,13 @@ export function controls(field: HTMLElement) {
         if (x && y) {
             const pixel = { x: Number(x), y: Number(y) }
             if (figure.include(pixel)) figure.rotate()
-            else {
-                const fig = get(figure)
-                const side = fig.every(({ x, y }) => x < pixel.x)
-                    ? 'Right' : fig.every(({ x, y }) => y < pixel.y)
-                        ? 'Down' : 'Left'
-                figure.move(side);
-            }
+            // else {
+            //     const fig = get(figure)
+            //     const side = fig.every(({ x, y }) => x < pixel.x)
+            //         ? 'Right' : fig.every(({ x, y }) => y < pixel.y)
+            //             ? 'Down' : 'Left'
+            //     figure.move(side);
+            // }
         }
     }
 
@@ -53,15 +53,17 @@ export function controls(field: HTMLElement) {
     }
     function pointerMove(e: PEvent) {
         const { clientX, clientY, currentTarget } = e
-        const { offsetWidth } = currentTarget.querySelector('.pixel') as HTMLElement
+        // const { offsetWidth } = currentTarget.querySelector('.pixel') as HTMLElement
+
         const x = clientX - dx
         const y = clientY - dy
+        const X = Math.abs(x) >= Math.abs(y)
         dx = e.clientX
         dy = e.clientY
 
         figure.move({
-            x: clamp(-1, Math.round(x / offsetWidth), 1),
-            y: clamp(0, Math.round(y / offsetWidth), 1)
+            x: clamp(-1, x, 1),
+            y: X ? 0 : clamp(0, y, 1)
         })
     }
     function pointerUp() {
