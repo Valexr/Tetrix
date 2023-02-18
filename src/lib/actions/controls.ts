@@ -57,7 +57,7 @@ export function controls(field: HTMLElement, state: string) {
     }
     function pointerMove(e: PEvent) {
         const { pageX, pageY } = e
-        const { offsetWidth, offsetHeight } = field.querySelector('.pixel') as HTMLElement
+        const { offsetWidth, offsetHeight } = field.firstChild as HTMLElement
 
         const x = pageX - dx
         const y = pageY - dy
