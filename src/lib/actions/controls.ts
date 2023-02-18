@@ -39,8 +39,9 @@ export function controls(field: HTMLElement) {
 
     function pointerDown(e: PointerEvent) {
         if (get(game).state !== "play") return;
-        dx = e.clientX
-        dy = e.clientY
+        const { pageX, pageY, currentTarget } = e
+        dx = pageX
+        dy = pageY
         field.onpointermove = (e) => pointerMove(e as PEvent);
         field.onpointerup = () => pointerUp();
         field.onpointerleave = () => pointerUp();
