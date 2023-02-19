@@ -12,5 +12,5 @@ main {
     margin: auto;
     inset: 0;
     gap: 2px;
-    touch-action: pan-y;
+    touch-action: pan-down;
 }
