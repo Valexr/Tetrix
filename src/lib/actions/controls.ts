@@ -10,6 +10,7 @@ export function controls(field: HTMLElement, state: string) {
             window.onkeydown = keyboardHandler
             field.onpointerdown = pointerDown
             field.onpointerup = pointerUp
+            field.onclick = (e) => e.preventDefault()
         } else destroy()
     }
 
