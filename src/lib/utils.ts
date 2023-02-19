@@ -12,23 +12,4 @@ function equal(cell: Cell, pixel: Cell) {
     return cell.x === pixel.x && cell.y === pixel.y
 }
 
-function throttle(
-    fn: (args: any) => void,
-    ms: number,
-    th?: boolean | number,
-    wait?: boolean,
-    tm?: NodeJS.Timeout
-): (args: any) => void {
-    return th
-        ? (args) => {
-            if (!wait) {
-                fn(args);
-                wait = true;
-                clearTimeout(tm);
-                tm = setTimeout(() => (wait = false), ms);
-            }
-        }
-        : (args) => fn(args);
-}
-
-export { clamp, random, equal, throttle }
+export { clamp, random, equal }
