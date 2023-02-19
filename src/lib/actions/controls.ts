@@ -60,11 +60,9 @@ export function controls(field: HTMLElement, state: string) {
 
         if (Math.abs(x) >= offsetWidth) {
             dx = pageX
-            moved = false
             figure.move({ x: clamp(-1, x, 1), y: 0 })
         } else if (Math.abs(y) >= offsetHeight) {
             dy = pageY
-            moved = false
             figure.move({ x: 0, y: clamp(0, y, 1) })
         }
     }
