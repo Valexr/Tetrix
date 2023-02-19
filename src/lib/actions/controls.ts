@@ -8,7 +8,6 @@ export function controls(field: HTMLElement, state: string) {
     function update(state?: string) {
         if (state === 'play') {
             window.onkeydown = keyboardHandler
-            // field.onclick = clickHandler
             field.onpointerdown = pointerDown
             field.onpointerup = pointerUp
         } else destroy()
@@ -16,7 +15,6 @@ export function controls(field: HTMLElement, state: string) {
 
     function destroy() {
         window.onkeydown = null
-        // field.onclick = null
         field.onpointerdown = null
         field.onpointerup = null
     }
@@ -31,13 +29,6 @@ export function controls(field: HTMLElement, state: string) {
             game.pause();
         }
     }
-    // function clickHandler(e: MouseEvent) {
-    //     const { dataset: { x, y } } = e.target as HTMLElement;
-    //     if (x && y) {
-    //         const pixel = { x: Number(x), y: Number(y) }
-    //         if (figure.include(pixel)) figure.rotate()
-    //     }
-    // }
 
     let dx = 0, dy = 0, moved = false
 
@@ -73,8 +64,5 @@ export function controls(field: HTMLElement, state: string) {
         field.releasePointerCapture(e.pointerId);
     }
 
-    return {
-        update,
-        destroy
-    }
+    return { update, destroy }
 }
