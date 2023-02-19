@@ -53,17 +53,10 @@ if (DEV) {
     const ctx = await context(buildOptions);
 
     await ctx.watch();
-    const { host, port } = await ctx.serve(serveOptions);
-
-    // const proxy = http();
-    // proxy.listen(port);
-    // console.log(`Serve on http://${host}:${port}`);
+    await ctx.serve(serveOptions);
 
     process.on('SIGTERM', ctx.dispose);
     process.on("exit", ctx.dispose);
-
-    // const time = new Date().toLocaleTimeString();
-    // console.dir(`${time} ${process.env.npm_package_name} started on http://${host}:${port}`);
 } else {
     await build(buildOptions);
 };
