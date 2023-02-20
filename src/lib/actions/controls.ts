@@ -46,9 +46,9 @@ export function controls(field: HTMLElement, state: string) {
     function pointerMove(e: PointerEvent) {
         const { pageX, pageY, width } = e
         const { offsetWidth } = field.firstChild as HTMLElement
+        const pointer = width === 1 ? offsetWidth : width / devicePixelRatio
         const x = pageX - dx
         const y = pageY - dy
-        const pointer = width === 1 ? offsetWidth : width / devicePixelRatio
 
         moved = true
 
