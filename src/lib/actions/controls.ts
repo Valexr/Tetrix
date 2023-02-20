@@ -43,17 +43,17 @@ export function controls(field: HTMLElement, state: string) {
         field.setPointerCapture(pointerId);
     }
     function pointerMove(e: PointerEvent) {
-        const { pageX, pageY } = e
-        const { offsetWidth, offsetHeight } = field.firstChild as HTMLElement
+        const { pageX, pageY, width, height } = e
+        // const { offsetWidth, offsetHeight } = field.firstChild as HTMLElement
         const x = pageX - dx
         const y = pageY - dy
 
         moved = true
 
-        if (Math.abs(x) >= offsetWidth) {
+        if (Math.abs(x) >= width / devicePixelRatio) {
             dx = pageX
             figure.move({ x: clamp(-1, x, 1), y: 0 })
-        } else if (Math.abs(y) >= offsetHeight) {
+        } else if (Math.abs(y) >= height / devicePixelRatio) {
             dy = pageY
             figure.move({ x: 0, y: clamp(0, y, 1) })
         }
