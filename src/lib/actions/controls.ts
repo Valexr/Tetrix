@@ -18,6 +18,7 @@ export function controls(field: HTMLElement, state: string) {
         window.onkeydown = null
         field.onpointerdown = null
         field.onpointerup = null
+        field.onclick = null
     }
 
     function keyboardHandler(e: KeyboardEvent) {
