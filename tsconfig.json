@@ -29,8 +29,7 @@
         "module": "ESNext",
         "target": "ESNext",
         "types": [
-            "svelte",
-            "Node"
+            "svelte"
         ]
     },
     "include": [
