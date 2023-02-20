@@ -52,8 +52,6 @@ export function controls(field: HTMLElement, state: string) {
 
         moved = true
 
-        console.log(e)
-
         if (Math.abs(x) >= pointer) {
             dx = pageX
             figure.move({ x: clamp(-1, x, 1), y: 0 })
