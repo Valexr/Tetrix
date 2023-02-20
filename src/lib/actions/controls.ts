@@ -18,7 +18,7 @@ export function controls(field: HTMLElement, state: string) {
         window.onkeydown = null
         field.onpointerdown = null
         field.onpointerup = null
-        field.onclick = null
+        // field.onclick = null
     }
 
     function keyboardHandler(e: KeyboardEvent) {
@@ -44,17 +44,20 @@ export function controls(field: HTMLElement, state: string) {
         field.setPointerCapture(pointerId);
     }
     function pointerMove(e: PointerEvent) {
-        const { pageX, pageY, width, height } = e
-        // const { offsetWidth, offsetHeight } = field.firstChild as HTMLElement
+        const { pageX, pageY, width } = e
+        const { offsetWidth } = field.firstChild as HTMLElement
         const x = pageX - dx
         const y = pageY - dy
+        const pointer = width === 1 ? offsetWidth : width / devicePixelRatio
 
         moved = true
 
-        if (Math.abs(x) >= width / devicePixelRatio) {
+        console.log(e)
+
+        if (Math.abs(x) >= pointer) {
             dx = pageX
             figure.move({ x: clamp(-1, x, 1), y: 0 })
-        } else if (Math.abs(y) >= height / devicePixelRatio) {
+        } else if (Math.abs(y) >= pointer) {
             dy = pageY
             figure.move({ x: 0, y: clamp(0, y, 1) })
         }

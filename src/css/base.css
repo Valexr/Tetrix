@@ -9,7 +9,9 @@ body {
     overflow: hidden;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 1fr;
-    font-family: system-ui;
+    font-family: 'Silkscreen', system-ui;
+    font-size: 14px;
+    letter-spacing: -2px;
     text-align: center;
     color: var(--front);
     background-color: var(--back);
@@ -19,6 +21,7 @@ body {
 
 * {
     box-sizing: border-box;
+    font-weight: 400;
 }
 
 header,
@@ -40,6 +43,8 @@ button {
     color: inherit;
     cursor: pointer;
     font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
     background-color: var(--surface);
     padding: 0.45rem 1rem;
     border-radius: 0.25rem;
