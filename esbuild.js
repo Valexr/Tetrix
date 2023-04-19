@@ -21,11 +21,7 @@ const serveOptions = {
 };
 
 const svelteOptions = {
-    compilerOptions: {
-        dev: DEV,
-        css: 'external',
-        // immutable: true
-    },
+    compilerOptions: { dev: DEV },
     preprocess: [
         preprocess({
             sourceMap: DEV,
