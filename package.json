@@ -12,7 +12,6 @@
         "url": "https://github.com/Valexr/Tetrix"
     },
     "devDependencies": {
-        "@tsconfig/svelte": "^3.0.0",
         "esbuild": "^0.17.18",
         "esbuild-svelte": "^0.7.3",
         "svelte": "^3.58.0",
