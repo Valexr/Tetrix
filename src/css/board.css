@@ -7,7 +7,8 @@ main {
     display: grid;
     grid-template-columns: repeat(var(--cols), auto);
     aspect-ratio: var(--cols) / var(--rows);
-    max-block-size: 100%;
+    max-block-size: calc(100vh - 132px);
+    height: 100dvh;
     position: absolute;
     margin: auto;
     inset: 0;

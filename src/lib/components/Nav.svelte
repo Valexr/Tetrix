@@ -3,9 +3,6 @@
     import { figure, figures } from "$lib/stores/figure";
 </script>
 
-<script lang="ts">
-</script>
-
 <footer>
     <nav class:playing={$game.state === "play"}>
         {#if $game.state === "play"}
