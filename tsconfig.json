@@ -19,7 +19,7 @@
         "isolatedModules": true,
         "resolveJsonModule": true,
         "moduleResolution": "Node",
-        "verbatimModuleSyntax": false,
+        "verbatimModuleSyntax": true,
         "lib": [
             "DOM",
             "ESNext",
