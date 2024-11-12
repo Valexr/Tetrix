@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     import { game } from "$lib/stores/game";
     import { figure, figures } from "$lib/stores/figure";
 </script>
@@ -6,12 +6,12 @@
 <footer>
     <nav class:playing={$game.state === "play"}>
         {#if $game.state === "play"}
-            <button on:click={game.pause}>Pause</button>
-            <button on:click={game.stop}>Stop</button>
+            <button onclick={game.pause}>Pause</button>
+            <button onclick={game.stop}>Stop</button>
         {:else}
             <button
                 class="lg"
-                on:click={$game.state === "pause" ? game.resume : game.start}
+                onclick={$game.state === "pause" ? game.resume : game.start}
             >
                 {$game.state === "pause" ? "Resume" : "Start"}
             </button>

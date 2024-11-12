@@ -1,13 +1,17 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     import Score from "$lib/components/Score.svelte";
     import Board from "$lib/components/Board.svelte";
     import Nav from "$lib/components/Nav.svelte";
     import type { Name, Repository } from "$types";
+
+    interface Props {
+        name: Name;
+        repository: Repository;
+    }
 </script>
 
 <script lang="ts">
-    export let name: Name;
-    export let repository: Repository;
+    let { name, repository }: Props = $props();
 
     // const ScreenOrientation = screen.orientation;
     // ScreenOrientation?.lock("portrait");

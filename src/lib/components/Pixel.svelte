@@ -1,13 +1,18 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     import { equal } from "$lib/utils";
     import type { Cell } from "$types";
+
+    interface Props {
+        filled: Cell[];
+        pixel: Cell;
+    }
 </script>
 
 <script lang="ts">
-    export let filled: Cell[];
-    export let pixel: Cell;
+    let { filled, pixel }: Props = $props();
 </script>
 
+<!-- svelte-ignore element_invalid_self_closing_tag -->
 <span
     class="pixel"
     data-x={pixel.x}

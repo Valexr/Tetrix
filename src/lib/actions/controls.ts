@@ -3,22 +3,22 @@ import { figure } from '$lib/stores/figure'
 import { clamp } from '$lib/utils';
 import type { Directions } from '$types';
 
-export function controls(field: HTMLElement, state: string) {
+export function controls(board: HTMLElement, state: string) {
 
     function update(state?: string) {
         if (state === 'play') {
             window.onkeydown = keyboardHandler
-            field.onpointerdown = pointerDown
-            field.onpointerup = pointerUp
-            field.onclick = (e) => e.preventDefault()
+            board.onpointerdown = pointerDown
+            board.onpointerup = pointerUp
+            board.onclick = (e) => e.preventDefault()
         } else destroy()
     }
 
     function destroy() {
         window.onkeydown = null
-        field.onpointerdown = null
-        field.onpointerup = null
-        // field.onclick = null
+        board.onpointerdown = null
+        board.onpointerup = null
+        // board.onclick = null
     }
 
     function keyboardHandler(e: KeyboardEvent) {
@@ -40,12 +40,12 @@ export function controls(field: HTMLElement, state: string) {
         dx = pageX
         dy = pageY
 
-        field.onpointermove = pointerMove
-        field.setPointerCapture(pointerId);
+        board.onpointermove = pointerMove
+        board.setPointerCapture(pointerId);
     }
     function pointerMove(e: PointerEvent) {
         const { pageX, pageY, width } = e
-        const { offsetWidth } = field.firstChild as HTMLElement
+        const { offsetWidth } = board.firstElementChild as HTMLElement
         const pointer = width === 1 ? offsetWidth : width / devicePixelRatio
         const x = pageX - dx
         const y = pageY - dy
@@ -63,8 +63,8 @@ export function controls(field: HTMLElement, state: string) {
     function pointerUp(e: PointerEvent) {
         if (!moved) figure.rotate()
         moved = false
-        field.onpointermove = null
-        field.releasePointerCapture(e.pointerId);
+        board.onpointermove = null
+        board.releasePointerCapture(e.pointerId);
     }
 
     return { update, destroy }

@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     import { board, game } from "$lib/stores/game";
     import { heap } from "$lib/stores/heap";
     import { figure } from "$lib/stores/figure";
