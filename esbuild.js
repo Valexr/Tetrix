@@ -24,16 +24,15 @@ const svelteOptions = {
     compilerOptions: {
         dev: DEV,
         css: 'external',
-        immutable: true,
         runes: true,
-        modernAst: true
+        modernAst: true,
     },
     preprocess: [
         sveltePreprocess({
             sourceMap: DEV,
             typescript: true,
         }),
-    ]
+    ],
 };
 
 const buildOptions = {
@@ -46,9 +45,9 @@ const buildOptions = {
     loader: { '.svg': 'text' },
     plugins: [svelte(svelteOptions), log],
     inject: DEV ? ['./env/lr.js'] : [],
-    legalComments: "none",
+    legalComments: 'none',
     logLevel: 'info',
-    metafile: !DEV
+    metafile: !DEV,
 };
 
 await rm('public/build');
@@ -60,7 +59,7 @@ if (DEV) {
     await ctx.serve(serveOptions);
 
     process.on('SIGTERM', ctx.dispose);
-    process.on("exit", ctx.dispose);
+    process.on('exit', ctx.dispose);
 } else {
     await meta(await build(buildOptions));
-};
+}

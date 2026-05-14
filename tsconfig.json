@@ -1,16 +1,9 @@
 {
     "compilerOptions": {
-        "baseUrl": ".",
         "paths": {
-            "$lib/*": [
-                "src/lib/*"
-            ],
-            "$svg/*": [
-                "src/svg/*"
-            ],
-            "$types": [
-                "src/types.ts"
-            ],
+            "$lib/*": ["./src/lib/*"],
+            "$svg/*": ["./src/svg/*"],
+            "$types": ["./src/types.ts"]
         },
         "strict": true,
         "sourceMap": true,
@@ -18,20 +11,12 @@
         "esModuleInterop": true,
         "isolatedModules": true,
         "resolveJsonModule": true,
-        "moduleResolution": "Node",
         "verbatimModuleSyntax": true,
-        "lib": [
-            "DOM",
-            "ESNext",
-            "DOM.Iterable"
-        ],
+        "lib": ["DOM", "ESNext", "DOM.Iterable"],
         "module": "ESNext",
         "target": "ESNext",
-        "types": [
-            "svelte"
-        ]
+        "types": ["svelte"],
+        "ignoreDeprecations": "6.0"
     },
-    "include": [
-        "src/**/*"
-    ],
+    "include": ["./src/**/*"]
 }
