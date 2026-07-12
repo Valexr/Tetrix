@@ -2,7 +2,7 @@
   "compilerOptions": {
     "paths": {
       "$lib/*": ["./src/lib/*"],
-      "$components/*": ["./src/components/*"],
+      "$svg/*": ["./src/svg/*"],
       "$types": ["./src/types.ts"],
     },
     "strict": true,
