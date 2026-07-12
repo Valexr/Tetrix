@@ -20,7 +20,7 @@ export function controls(state: string) {
         window.onkeydown = keyboardHandler;
         board.onpointerdown = pointerDown;
         board.onpointerup = pointerUp;
-        // board.onclick = (e) => e.preventDefault();
+        board.onclick = (e) => e.preventDefault();
       } else destroy();
     }
 
@@ -48,6 +48,7 @@ export function controls(state: string) {
 
       dx = pageX;
       dy = pageY;
+      moved = false;
 
       board.onpointermove = pointerMove;
       board.setPointerCapture(pointerId);
@@ -58,13 +59,13 @@ export function controls(state: string) {
       const x = pageX - dx;
       const y = pageY - dy;
 
-      moved = true;
-
       if (Math.abs(x) >= pointer) {
         dx = pageX;
+        moved = true;
         figure.move({ x: clamp(-1, x, 1), y: 0 });
       } else if (Math.abs(y) >= pointer) {
         dy = pageY;
+        moved = true;
         figure.move({ x: 0, y: clamp(0, y, 1) });
       }
     }

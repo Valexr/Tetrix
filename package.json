@@ -7,7 +7,7 @@
     "build": "node esbuild",
     "dev": "node esbuild --dev",
     "lint": "biome check --fix",
-    "format": "biome format . --write",
+    "format": "biome format --write",
     "preview": "npx esbuild --servedir=public"
   },
   "repository": {
