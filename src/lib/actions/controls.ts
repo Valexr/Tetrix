@@ -20,7 +20,7 @@ export function controls(state: string) {
         window.onkeydown = keyboardHandler;
         board.onpointerdown = pointerDown;
         board.onpointerup = pointerUp;
-        board.onclick = (e) => e.preventDefault();
+        // board.onclick = (e) => e.preventDefault();
       } else destroy();
     }
 
