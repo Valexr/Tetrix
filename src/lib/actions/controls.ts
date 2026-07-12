@@ -54,7 +54,6 @@ export function controls(state: string) {
     }
     function pointerMove(e: PointerEvent) {
       const { pageX, pageY, width } = e;
-      console.log(width, cellSize);
       const pointer = Math.max(cellSize, width / devicePixelRatio);
       const x = pageX - dx;
       const y = pageY - dy;
