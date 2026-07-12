@@ -1,67 +1,66 @@
 nav {
-    color-scheme: dark;
-    position: absolute;
-    left: calc(50% - 150px);
-    top: calc(50% - 25px);
-    display: flex;
-    flex-flow: column nowrap;
-    width: 300px;
+  color-scheme: dark;
+  position: absolute;
+  left: calc(50% - 150px);
+  top: calc(50% - 25px);
+  display: flex;
+  flex-flow: column nowrap;
+  width: 300px;
 }
 
 nav.playing {
-    top: auto;
-    left: auto;
-    position: relative;
-    flex-flow: row nowrap;
-    justify-content: center;
-    gap: 1rem;
-    width: 100%;
+  top: auto;
+  left: auto;
+  position: relative;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
 }
 
 fieldset {
-    display: flex;
-    justify-content: space-around;
-    border: 0;
-    margin: 0;
-    padding: 1rem 0;
+  display: flex;
+  justify-content: space-around;
+  border: 0;
+  margin: 0;
+  padding: 1rem 0;
 }
 
 label {
-    flex: 0 1 min-content;
+  flex: 0 1 min-content;
 }
 
 input,
 select {
-    border: 0;
-    border-radius: 0;
-    padding: 0.25rem;
-    color: var(--front);
-    background-color: var(--back);
-    font-size: inherit;
-    border-radius: 0.15rem;
+  border: 0;
+  border-radius: 0.15rem;
+  padding: 0.25rem;
+  color: var(--front);
+  background-color: var(--back);
+  font-size: inherit;
 }
 
 select {
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%204%205'%3E%3Cpath%20fill='currentColor'%20d='M2%200L0%202h4zm0%205L0%203h4z'/%3E%3C/svg%3E");
-    background-position: right 0.5em center;
-    background-repeat: no-repeat;
-    background-size: .5em .75em;
-    padding-right: 2em;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%204%205'%3E%3Cpath%20fill='currentColor'%20d='M2%200L0%202h4zm0%205L0%203h4z'/%3E%3C/svg%3E");
+  background-position: right 0.5em center;
+  background-repeat: no-repeat;
+  background-size: 0.5em 0.75em;
+  padding-right: 2em;
 }
 
 button {
-    position: relative;
-    box-shadow: var(--shadow);
+  position: relative;
+  box-shadow: var(--shadow);
 }
 
 button.lg {
-    font-size: 2rem;
-    box-shadow: var(--shadow-lg);
+  font-size: 2rem;
+  box-shadow: var(--shadow-lg);
 }
 
 button:active {
-    top: 2px;
-    left: 2px;
-    box-shadow: none;
+  top: 2px;
+  left: 2px;
+  box-shadow: none;
 }

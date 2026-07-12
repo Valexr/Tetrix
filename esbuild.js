@@ -1,8 +1,8 @@
 import { build, context } from 'esbuild';
 import svelte from 'esbuild-svelte';
-import rm from './env/rm.js';
 import log from './env/log.js';
 import meta from './env/meta.js';
+import rm from './env/rm.js';
 import pkg from './package.json' with { type: 'json' };
 
 const DEV = process.argv.includes('--dev');

@@ -3,7 +3,7 @@
     "paths": {
       "$lib/*": ["./src/lib/*"],
       "$svg/*": ["./src/svg/*"],
-      "$types": ["./src/types.ts"],
+      "$types": ["./src/types.ts"]
     },
     "strict": true,
     "sourceMap": true,
@@ -16,7 +16,7 @@
     "lib": ["DOM", "ESNext", "DOM.Iterable"],
     "module": "ESNext",
     "target": "ESNext",
-    "types": ["svelte"],
+    "types": ["svelte"]
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*"]
 }

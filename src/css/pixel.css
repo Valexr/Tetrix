@@ -1,9 +1,9 @@
 .pixel {
-    aspect-ratio: 1;
-    background-color: var(--surface);
+  aspect-ratio: 1;
+  background-color: var(--surface);
 }
 
 .pixel.fill {
-    position: relative;
-    background-color: var(--active);
+  position: relative;
+  background-color: var(--active);
 }

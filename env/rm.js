@@ -1,9 +1,9 @@
-import { rm } from 'fs/promises';
+import { rm } from 'node:fs/promises';
 
 export default async function remove(path = 'dist') {
-    try {
-        await rm(path, { recursive: true });
-    } catch {
-        console.log(`${path}`);
-    }
+  try {
+    await rm(path, { recursive: true });
+  } catch {
+    console.log(`${path}`);
+  }
 }

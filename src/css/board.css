@@ -1,17 +1,17 @@
 main {
-    position: relative;
-    padding: 0 1rem;
+  position: relative;
+  padding: 0 1rem;
 }
 
 #board {
-    display: grid;
-    grid-template-columns: repeat(var(--cols), auto);
-    aspect-ratio: var(--cols) / var(--rows);
-    max-block-size: calc(100vh - 132px);
-    height: 100dvh;
-    position: absolute;
-    margin: auto;
-    inset: 0;
-    gap: 2px;
-    touch-action: pan-down;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), auto);
+  aspect-ratio: var(--cols) / var(--rows);
+  max-block-size: calc(100vh - 132px);
+  height: 100dvh;
+  position: absolute;
+  margin: auto;
+  inset: 0;
+  gap: 2px;
+  touch-action: pan-down;
 }

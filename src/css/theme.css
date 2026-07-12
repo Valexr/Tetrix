@@ -1,24 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
 
 :root {
-    --back: #f2f2f2;
-    --front: #1c1b22;
-    --surface: #e9e9ed;
-    --hover: #d0d0d7;
-    --active: #b1b1b9;
-    --shadow-color: #b1b1b969;
-    --shadow: 2px 2px 1px 0px var(--shadow-color);
-    --shadow-lg: 4px 4px 1px 0px var(--shadow-color);
+  --back: #f2f2f2;
+  --front: #1c1b22;
+  --surface: #e9e9ed;
+  --hover: #d0d0d7;
+  --active: #b1b1b9;
+  --shadow-color: #b1b1b969;
+  --shadow: 2px 2px 1px 0px var(--shadow-color);
+  --shadow-lg: 4px 4px 1px 0px var(--shadow-color);
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        color-scheme: dark;
-        --back: #1c1b22;
-        --front: #f2f2f2;
-        --surface: #2b2a33;
-        --hover: #52525e;
-        --active: #5b5b66;
-        --shadow-color: #5b5b6669;
-    }
+  :root {
+    color-scheme: dark;
+    --back: #1c1b22;
+    --front: #f2f2f2;
+    --surface: #2b2a33;
+    --hover: #52525e;
+    --active: #5b5b66;
+    --shadow-color: #5b5b6669;
+  }
 }
