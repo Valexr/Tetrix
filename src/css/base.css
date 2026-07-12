@@ -60,4 +60,5 @@ button:hover:active {
 
 a {
   color: inherit;
+  text-decoration: none;
 }
