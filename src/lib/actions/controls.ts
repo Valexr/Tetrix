@@ -43,11 +43,11 @@ export function controls(state: string) {
     }
 
     function pointerDown(e: PointerEvent) {
+      e.preventDefault();
       const { pageX, pageY, pointerId } = e;
 
       dx = pageX;
       dy = pageY;
-      moved = false;
 
       board.onpointermove = pointerMove;
       board.setPointerCapture(pointerId);
@@ -69,6 +69,7 @@ export function controls(state: string) {
       }
     }
     function pointerUp(e: PointerEvent) {
+      e.preventDefault();
       if (!moved) figure.rotate();
       moved = false;
       board.onpointermove = null;
