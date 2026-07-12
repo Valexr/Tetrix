@@ -9,6 +9,8 @@ export function controls(state: string) {
   let moved = false;
 
   return (board: HTMLElement) => {
+    const cellSize = board.firstElementChild?.offsetWidth ?? 10;
+
     update(state);
 
     return () => destroy();
@@ -45,14 +47,15 @@ export function controls(state: string) {
 
       dx = pageX;
       dy = pageY;
+      moved = false;
 
       board.onpointermove = pointerMove;
       board.setPointerCapture(pointerId);
     }
     function pointerMove(e: PointerEvent) {
       const { pageX, pageY, width } = e;
-      const { offsetWidth } = board.firstElementChild as HTMLElement;
-      const pointer = offsetWidth;
+      console.log(width, cellSize);
+      const pointer = Math.max(cellSize, width / devicePixelRatio);
       const x = pageX - dx;
       const y = pageY - dy;
 
@@ -61,11 +64,9 @@ export function controls(state: string) {
       if (Math.abs(x) >= pointer) {
         dx = pageX;
         figure.move({ x: clamp(-1, x, 1), y: 0 });
-        // figure.move(x > 0 ? 'Right' : 'Left');
       } else if (Math.abs(y) >= pointer) {
         dy = pageY;
         figure.move({ x: 0, y: clamp(0, y, 1) });
-        // if (y > 0) figure.move('Down');
       }
     }
     function pointerUp(e: PointerEvent) {
