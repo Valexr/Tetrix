@@ -20,6 +20,7 @@ export function controls(state: string) {
         window.onkeydown = keyboardHandler;
         board.onpointerdown = pointerDown;
         board.onpointerup = pointerUp;
+        board.onpointercancel = pointerUp;
         board.onclick = (e) => e.preventDefault();
       } else destroy();
     }
@@ -43,7 +44,6 @@ export function controls(state: string) {
     }
 
     function pointerDown(e: PointerEvent) {
-      e.preventDefault();
       const { pageX, pageY, pointerId } = e;
 
       dx = pageX;
@@ -70,7 +70,6 @@ export function controls(state: string) {
       }
     }
     function pointerUp(e: PointerEvent) {
-      e.preventDefault();
       if (!moved) figure.rotate();
       moved = false;
       board.onpointermove = null;

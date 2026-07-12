@@ -13,5 +13,5 @@ main {
   margin: auto;
   inset: 0;
   gap: 2px;
-  touch-action: pan-down;
+  touch-action: none;
 }
