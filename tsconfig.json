@@ -3,7 +3,7 @@
         "paths": {
             "$lib/*": ["./src/lib/*"],
             "$svg/*": ["./src/svg/*"],
-            "$types": ["./src/types.ts"]
+            "$types": ["./src/types.ts"],
         },
         "strict": true,
         "sourceMap": true,
@@ -12,11 +12,11 @@
         "isolatedModules": true,
         "resolveJsonModule": true,
         "verbatimModuleSyntax": true,
+        "moduleResolution": "bundler",
         "lib": ["DOM", "ESNext", "DOM.Iterable"],
         "module": "ESNext",
         "target": "ESNext",
         "types": ["svelte"],
-        "ignoreDeprecations": "6.0"
     },
-    "include": ["./src/**/*"]
+    "include": ["./src/**/*"],
 }

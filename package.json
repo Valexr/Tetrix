@@ -6,6 +6,7 @@
     "scripts": {
         "build": "node esbuild",
         "dev": "node esbuild --dev",
+        "lint": "biome check --fix",
         "preview": "npx esbuild --servedir=public"
     },
     "repository": {
@@ -13,10 +14,10 @@
         "url": "https://github.com/Valexr/Tetrix"
     },
     "devDependencies": {
-        "esbuild": "^0.28.0",
+        "@biomejs/biome": "2.5.3",
+        "esbuild": "^0.28.1",
         "esbuild-svelte": "^0.9.5",
-        "svelte": "^5.55.5",
-        "svelte-preprocess": "^6.0.3",
-        "typescript": "^6.0.3"
+        "svelte": "^5.56.4",
+        "typescript": "^7.0.2"
     }
 }
