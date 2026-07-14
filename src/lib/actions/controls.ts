@@ -48,7 +48,7 @@ export function controls(state: string) {
 
       dx = pageX;
       dy = pageY;
-      moved = false;
+      // moved = false;
 
       board.onpointermove = pointerMove;
       board.setPointerCapture(pointerId);
